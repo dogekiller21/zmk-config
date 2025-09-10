@@ -73,10 +73,8 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(4,5) RC(4,6) RC(3,6) RC(3,7) 
     };
 
     backlight: pwmleds {
-        compatible = "pwm-leds";
-        pwm_led_0 {
-            pwms = <&pwm0 0 PWM_MSEC(1) PWM_POLARITY_NORMAL>;
-        };
+        compatible = "zmk,backlight-pwm";
+        pwms = <&pwm0 0 PWM_MSEC(1) PWM_POLARITY_NORMAL>;
     };
 };
 
