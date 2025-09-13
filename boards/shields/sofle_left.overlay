@@ -1,4 +1,13 @@
-
+/* LEFT (central, USB)
+ *
+ * Purpose:
+ * - Enable UART0 and assign TX/RX pins for the wired split link.
+ * - Central side exposes USB HID to the host.
+ *
+ * Notes:
+ * - TX/RX below are chosen so a straight TRRS cable can be used if the RIGHT side mirrors them.
+ * - Use ONLY three TRRS lines between halves: GND, TX, RX. Do NOT route VCC over TRRS.
+ */
 
 &uart0 {
     status = "okay";
@@ -10,8 +19,12 @@
 &pinctrl {
     uart0_left_central_default: uart0_left_central_default {
         group1 {
-            /* TX = P0.08, RX = P0.06 */
+            /* UART TX = P0.08, UART RX = P0.06 on the LEFT (central) half */
             psels = <NRF_PSEL(UART_TX, 0, 8)>, <NRF_PSEL(UART_RX, 0, 6)>;
         };
     };
 }
+
+/* Wired split is selected by Kconfig (ZMK_SPLIT=y, ZMK_SPLIT_BLE=n) and this UART overlay.
+ * No extra devicetree "transport" node is required in typical ZMK setups.
+ */
