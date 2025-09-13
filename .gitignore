@@ -3,3 +3,4 @@
 .west/
 modules/
 zmk/
+.DS_Store
